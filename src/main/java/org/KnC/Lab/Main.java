@@ -8,22 +8,21 @@ public class Main {
         ProductoService productoService = new ProductoService();
         PedidoService pedidoService = new PedidoService(productoService);
 
-        // Precargar productos para prueba
-        productoService.agregarProducto("Café Premium", 1200.0, 10);
-        productoService.agregarProducto("Coca-Cola 2.25L", 399.0, 5);
-        productoService.agregarProducto("Yerba Mate 1Kg", 1450.0, 7);
-        productoService.agregarProducto("Leche Entera 1L", 310.0, 12);
 
-        // Precargar pedido
-        pedidoService.agregarPedidoDePrueba();
+
+
 
 
         boolean continuar = true;
 
         while (continuar) {
-            System.out.println("===================================");
-            System.out.println("SISTEMA DE GESTIÓN - TECHLAB");
-            System.out.println("===================================");
+            clear(30, false);
+            System.out.println("╔════════════════════════════╗");
+            System.out.println("║         E-COMMERCE         ║");
+            System.out.println("║                            ║");
+            System.out.println("║       (Menú principal)     ║");
+            System.out.println("╚════════════════════════════╝\n");
+            System.out.println("0) Precargar productos y pedido DEMO\n────────────────────────────────────");
             System.out.println("1) Agregar producto");
             System.out.println("2) Listar productos");
             System.out.println("3) Buscar/Actualizar producto");
@@ -31,11 +30,21 @@ public class Main {
             System.out.println("5) Crear un pedido");
             System.out.println("6) Listar pedidos");
             System.out.println("7) Salir");
+            System.out.println("────────────────────────────────────");
             System.out.print("Elija una opción: ");
 
             String opcion = scanner.nextLine();
-
+            clear(30, false);
             switch (opcion) {
+                case "0":
+                    // Precargar productos para prueba
+                    productoService.agregarProducto("Café Premium", 2200.0, 19);
+                    productoService.agregarProducto("Coca-Cola 2.25L", 3999.0, 32);
+                    productoService.agregarProducto("Yerba Mate 1Kg", 1450.0, 12);
+                    productoService.agregarProducto("Leche Entera 1L", 1310.0, 23);
+                    // Precargar pedido
+                    pedidoService.agregarPedidoDePrueba();
+                    break;
                 case "1":
                     System.out.print("Nombre del producto: ");
                     String nombre = scanner.nextLine();
@@ -134,10 +143,34 @@ public class Main {
                 default:
                     System.out.println("Opción inválida.");
             }
-
-            System.out.println(); // Espacio entre operaciones
+            if (continuar==true){
+                clear(30,true);
+            }else {
+                cerrar();
+            }
         }
 
         scanner.close();
+    }
+
+    //  Funcion para limpiar pantalla dando saltos de líneas.
+    public static void clear (int lineas, boolean timeout) {
+        Scanner sca = new Scanner(System.in);
+        if (timeout){
+            System.out.print("\n\n\n«« Presione ENTER para volver al menú inicial »» ");
+            sca.hasNextLine();
+            sca.nextLine();
+        }
+        for(int i=0;i<=lineas;i++){
+            System.out.println("");
+        }
+    }
+
+    public static void cerrar () {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("\n\n\n\n«« Presione ENTER para SALIR »» ");
+        String accion = sc.nextLine();
+        System.exit(0);
+        sc.close();
     }
 }

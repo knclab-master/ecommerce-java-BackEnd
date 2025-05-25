@@ -1,5 +1,7 @@
 package org.KnC.Lab;
 
+import static org.KnC.Lab.Main.clear;
+
 public class LineaPedido {
     private Producto producto;
     private int cantidad;

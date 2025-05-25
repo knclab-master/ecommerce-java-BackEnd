@@ -17,24 +17,12 @@ public class PedidoService {
         Producto p1 = productoService.buscarPorId(1); // Café Premium
         Producto p2 = productoService.buscarPorId(2); // Coca-Cola 2.25L
 
-        if (p1 == null || p2 == null) {
-            System.out.println("Productos para prueba no encontrados.");
-            return;
-        }
-
-        if (p1.getStock() < 2 || p2.getStock() < 1) {
-            System.out.println("Stock insuficiente para pedido de prueba.");
-            return;
-        }
-
-        p1.setStock(p1.getStock() - 2);
-        p2.setStock(p2.getStock() - 1);
-
         Pedido pedido = new Pedido();
         pedido.agregarLinea(new LineaPedido(p1, 2));
+        p1.setStock(p1.getStock() - 2); // Descontar stock
         pedido.agregarLinea(new LineaPedido(p2, 1));
+        p2.setStock(p2.getStock() - 1); // Descontar stock
         pedidos.add(pedido);
-
         System.out.println("Pedido de prueba precargado con éxito.");
     }
 
