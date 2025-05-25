@@ -5,6 +5,9 @@ public class LineaPedido {
     private int cantidad;
 
     public LineaPedido(Producto producto, int cantidad) {
+        if (cantidad <= 0) {
+            throw new IllegalArgumentException("La cantidad debe ser mayor que cero.");
+        }
         this.producto = producto;
         this.cantidad = cantidad;
     }
@@ -17,6 +20,6 @@ public class LineaPedido {
     }
 
     public String mostrarInfo() {
-        return producto.getNombre() + " x " + cantidad + " Unid. = $" + getSubtotal();
+        return producto.getNombre() + " x " + cantidad + " Unid. @ $" + producto.getPrecio() + " = $" + getSubtotal();
     }
 }

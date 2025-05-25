@@ -11,6 +11,15 @@ public class ProductoService {
     }
 
     public void agregarProducto(String nombre, double precio, int stock) {
+        if (precio < 0) {
+            System.out.println("El precio no puede ser negativo.");
+            return;
+        }
+        if (stock < 0) {
+            System.out.println("El stock no puede ser negativo.");
+            return;
+        }
+
         Producto nuevo = new Producto(nombre, precio, stock);
         productos.add(nuevo);
         System.out.println("Producto agregado con éxito. ID asignado: " + nuevo.getId());
@@ -22,8 +31,12 @@ public class ProductoService {
             return;
         }
 
+        System.out.println("Listado de productos:");
         for (Producto p : productos) {
-            System.out.println(p.mostrarInfo());
+            System.out.println("ID: " + p.getId());
+            System.out.println("Nombre: " + p.getNombre());
+            System.out.println("Precio: $" + p.getPrecio());
+            System.out.println("Stock disponible: " + p.getStock());
             System.out.println("------------------------");
         }
     }

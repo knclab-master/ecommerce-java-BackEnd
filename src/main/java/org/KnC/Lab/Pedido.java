@@ -13,9 +13,21 @@ public class Pedido {
         this.lineas = new ArrayList<>();
     }
 
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
     public void agregarLinea(LineaPedido linea) {
+        // Validar que haya suficiente stock
+        if (linea.getCantidad() > linea.getProducto().getStock()) {
+            System.out.println("No hay suficiente stock para " + linea.getProducto().getNombre() + ". La línea no se añadirá al pedido.");
+            return; // No se agrega la línea al pedido si no hay suficiente stock
+        }
+
+        // Reducir el stock del producto
+        linea.getProducto().setStock(linea.getProducto().getStock() - linea.getCantidad());
+
+        // Agregar la línea al pedido
         lineas.add(linea);
     }
 
@@ -39,5 +51,4 @@ public class Pedido {
         sb.append("Total: $").append(calcularTotal());
         return sb.toString();
     }
-
 }
