@@ -6,6 +6,7 @@ Se puede usar el respaldo adjunto (ecommerce_respaldo.sql) que incluye datos de 
 O bien partir de una base vacía, el backend creará las tablas automáticamente.
 
 Funcionalidad principal
+
 -ABM productos y categorías (CRUD).
 -Asociación productos ↔ categorías.
 -Gestión de pedidos: alta y consulta, con control de stock y validaciones de negocio.
